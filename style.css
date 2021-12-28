@@ -1,0 +1,24 @@
+* {
+    margin: none;
+    padding: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+#grid {
+    width: 75vh;
+    height: 75vh;
+    border: 1px solid black;
+    background-color: aliceblue;
+    display: grid;
+}
+
+ div {
+    background-color: #FFFFFF;
+}
