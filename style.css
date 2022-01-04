@@ -9,16 +9,86 @@ body {
     align-items: center;
     height: 100vh;
     overflow-y: hidden;
+    gap: 5vw;
+    background-color: #959bbe;
 }
 
 #grid {
-    width: 75vh;
-    height: 75vh;
-    border: 1px solid black;
-    background-color: aliceblue;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #000000;
     display: grid;
+    background-color: #F1F1F1;
 }
 
- div {
-    background-color: #FFFFFF;
+.rangeDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.paitingSettings {
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+    border: 1px solid black;
+    align-items: center;
+    padding: 5vh 6.5vh;
+    border-radius: 30px;
+    background-color: #01061db2;
+}
+
+input[type='color']:active {
+    transition: transform 0.05s ease-in-out;
+    transform: scale(1);
+  }
+  
+  input[type='color'] {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 100px;
+    background: none;
+    border: none;
+  }
+  
+  input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  
+  input[type='color']::-webkit-color-swatch {
+    border: none;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  button {
+      width: 250px;
+      height: 60px;
+      background-color: #8287a5;
+      border: none;
+      border-radius: 30px;
+      transition: 300ms;
+      color: #F1F1F1;
+      font-size: 15px;
+  }
+
+  button:disabled {
+    background-color: #4c5062;
+  }
+
+  button:disabled:hover {
+    background-color: #5a5e70;
+  }
+  
+  button:hover {
+    background-color: #757A95;
+  }
+
+  button:active {
+    background-color: #4c5062;
+  }
+
+  .display {
+    color: #F1F1F1;
+    font-size: 23px;
+  }
