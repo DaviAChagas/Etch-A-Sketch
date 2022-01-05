@@ -3,48 +3,71 @@ const rangeSlider = document.querySelector('#range')
 const display = document.querySelector('.display')
 const colorPicker = document.querySelector('#colorPicker')
 
-const colorButton = document.querySelector('.colorButton')
+const buttons = document.querySelectorAll('button')
+const defaultColorButton = document.querySelector('.defaultButton')
 const colorfulButton = document.querySelector('.colorfulButton')
 const eraserButton = document.querySelector('.eraserButton')
 const clearButton = document.querySelector('.clearButton')
 
-let pixelColor = 'rgba(41, 41, 41)'
+let pixelColor
 
 let resetGridElement = () => {
     gridElement.textContent = ' '
 }
 
-let changeColor = (e) => {
+let changeColorToSpecific = (e) => {
     if(e.target.classList.contains('pixel') === true) {
+            pixelColor = colorPicker.value
+
+        e.target.style.background = pixelColor
+}}
+
+let changeColorToDefault = (e) => {
+    if(e.target.classList.contains('pixel') === true) {
+    pixelColor = 'rgba(41, 41, 41)'
     e.target.style.background = pixelColor
 }}
 
-colorPicker.addEventListener('input', () => {
-        pixelColor = colorPicker.value
-})
+let changeColorWithRandom = (e) => {
+    if(e.target.classList.contains('pixel') === true) {
+        let red = Math.floor(Math.random() * 256)
+        let green = Math.floor(Math.random() * 256)
+        let blue = Math.floor(Math.random() * 256)
 
-eraserButton.addEventListener('click', () => {
-    pixelColor = '#F1F1F1'
-})
+        pixelColor = `rgba(${red}, ${green}, ${blue})`
+        e.target.style.background = pixelColor
+    }
+}
 
-let teste = value => {
+
+let generatePixelsInGrid = numberOFPixels => {
     resetGridElement()
-    gridElement.style.gridTemplateColumns = `repeat(${value}, 1fr)`
-    gridElement.style.gridTemplateRows = `repeat(${value}, 1fr)`
+    gridElement.style.gridTemplateColumns = `repeat(${numberOFPixels}, 1fr)`
+    gridElement.style.gridTemplateRows = `repeat(${numberOFPixels}, 1fr)`
     
 
-    for(let i = 0; i < (value * value); i++) {
+    for(let i = 0; i < (numberOFPixels * numberOFPixels); i++) {
         const div = document.createElement('div')
         div.classList.add('pixel')
         gridElement.appendChild(div)
     }
-    
-    gridElement.addEventListener('mouseover', event => changeColor(event)) 
 }
     
+let enableButtons = () => {
+    buttons.forEach(button => {
+        button.disabled = false })
+
+}
+
+let disableButton = (e) => {
+        enableButtons()
+            e.target.disabled = true
+
+}
+
 let valueToRangeSlider = 16
 
-teste(valueToRangeSlider)
+generatePixelsInGrid(valueToRangeSlider)
 
 rangeSlider.addEventListener('mousemove', () => {
     valueToRangeSlider = rangeSlider.value
@@ -54,7 +77,31 @@ rangeSlider.addEventListener('mousemove', () => {
 rangeSlider.addEventListener('input', () => {
     valueToRangeSlider = rangeSlider.value
     display.textContent = `${valueToRangeSlider} x ${valueToRangeSlider}`    
-    teste(valueToRangeSlider)
+    generatePixelsInGrid(valueToRangeSlider)
 })
 
-clearButton.addEventListener('click', teste(16))
+
+colorPicker.addEventListener('click', () => {
+    enableButtons()
+    gridElement.addEventListener('mouseover', event => changeColorToSpecific(event)) 
+})
+
+defaultColorButton.addEventListener('click', e => {
+    disableButton(e)
+    gridElement.addEventListener('mouseover', event => changeColorToDefault(event)) 
+})
+
+colorfulButton.addEventListener('click', e => {
+    disableButton(e)
+    gridElement.addEventListener('mouseover', event => changeColorWithRandom(event)) 
+})
+
+eraserButton.addEventListener('click', e => {
+    disableButton(e)
+    gridElement.addEventListener('mouseover', event => 
+        event.target.style.background = '#F1F1F1'
+)})
+
+clearButton.addEventListener('click', () => {
+    generatePixelsInGrid(valueToRangeSlider)
+}) 
