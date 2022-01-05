@@ -10,10 +10,20 @@ const eraserButton = document.querySelector('.eraserButton')
 const clearButton = document.querySelector('.clearButton')
 
 let pixelColor
+let valueToRangeSlider = 16
+
+
+let defaultSettings = () => {
+    generatePixelsInGrid(valueToRangeSlider)
+    defaultColorButton.disabled = true
+    gridElement.addEventListener('mouseover', event => changeColorToDefault(event))
+}
+
 
 let resetGridElement = () => {
     gridElement.textContent = ' '
 }
+
 
 let changeColorToSpecific = (e) => {
     if(e.target.classList.contains('pixel') === true) {
@@ -65,9 +75,7 @@ let disableButton = (e) => {
 
 }
 
-let valueToRangeSlider = 16
-
-generatePixelsInGrid(valueToRangeSlider)
+defaultSettings()
 
 rangeSlider.addEventListener('mousemove', () => {
     valueToRangeSlider = rangeSlider.value
