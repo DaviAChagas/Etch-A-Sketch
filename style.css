@@ -14,8 +14,8 @@ body {
 }
 
 #grid {
-    width: 600px;
-    height: 600px;
+    width: 70vh;
+    height: 70vh;
     border: 1px solid #000000;
     display: grid;
     background-color: #F1F1F1;
@@ -88,7 +88,42 @@ input[type='color']:active {
     background-color: #4c5062;
   }
 
+  
   .display {
     color: #F1F1F1;
     font-size: 23px;
+  }
+
+
+  input[type=range] {
+    height: 33px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: none;
+    transform: scale(1.2);
+  }
+
+  input[type=range]:focus {
+    outline: none;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 174px;
+    height: 2px;
+    cursor: pointer;
+    background:  #007AFF;
+    border-radius: 3px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #F1F1F1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -12.5px;
+    border: 0.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16), 0px 3px 1px rgba(0, 0, 0, 0.1);
   }
